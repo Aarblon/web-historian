@@ -43,6 +43,7 @@ exports.isUrlInList = function(url, cb){
 };
 
 exports.addUrlToList = function(url, cb){
+  url = url + '\n';
   fs.appendFile(exports.paths.list, url);
   exports.readListOfUrls(cb);
 };
@@ -60,7 +61,9 @@ exports.isUrlArchived = function(url, cb){
 
 //to be used by the worker
 exports.downloadUrls = function(urlArray){
-  urlArray = urlArray || exports.readListofUrls();
+  urlArray = urlArray || exports.readListOfUrls(function(array) {
+    return array;
+  });
   console.log('urlArray: ', urlArray);
   //check each url to see if they are archived
   urlArray.forEach(function(url) {
