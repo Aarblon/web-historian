@@ -58,6 +58,7 @@ exports.isUrlArchived = function(url, cb){
   return cb(exists);
 };
 
+//to be used by the worker
 exports.downloadUrls = function(urlArray){
   urlArray = urlArray || exports.readListofUrls();
   console.log('urlArray: ', urlArray);
